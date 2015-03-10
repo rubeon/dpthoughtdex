@@ -50,7 +50,8 @@ def add_message(username, password, source, message):
     # date and time, now or from the message?
     # :ehw!~eric@2001:4800:7815:105:7de7:84e6:ff05:86e7 PRIVMSG ##ericdev :heh http://www.meetup.com/UK-OSS-on-Windows-Azure-Platform-Meetup/events/220554498/
     # for raw IRC data, regex would be 
-    irc_regex = irc_regex = "^:(?P<user>\w+)!~\w+@(?P<address>[\w+:.\-]*) (?P<command>\w+) (?P<room>[#\w\-_]+) :(?P<message>.*)$"
+    # irc_regex = irc_regex = "^:(?P<user>\w+)!~\w+@(?P<address>[\w+:.\-]*) (?P<command>\w+) (?P<room>[#\w\-_]+) :(?P<message>.*)$"
+    irc_regex = "^:(?P<user>\w+)![~\w]+@(?P<address>[\w+:.\-\/]*) (?P<command>\w+) (?P<room>[#\w\-_]+) :(?P<message>.*)$"
     res = re.match(irc_regex, message)
 
     if res:
