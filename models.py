@@ -1,10 +1,13 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 from taggit.managers import TaggableManager
-
+import logging
 import datetime
 
 # Create your models here.
 
+
+logger = logging.getLogger(__name__)
 class Link(models.Model):
     """
     A link
@@ -22,6 +25,18 @@ class Link(models.Model):
     def __unicode__(self):
         # how to repr myself
         return self.url
+        
+    def get_absolute_url(self):
+        logger.debug("get_absolute_url entered for %s" % self)
+        # logger.debug("post_format: %s" % self.post_format)
+        kwargs = {
+            'pk': self.pk,
+            'year': self.pub_date.year,
+            'month': self.pub_date.strftime("%b").lower(),
+            'day': self.pub_date.day,
+        }
+        return reverse("link-detail", kwargs=kwargs)
+        
     
 
 class Source(models.Model):
