@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% load bootstrap3 %}
+{% block extratitle %}
+{% for date in date_list %}::{{ date.year }}{% endfor %}
+{% endblock %}
+
+{% block maincontent %}
+<section id="content">
+{% for object in object_list %}
+{% ifchanged %}
+<h3><a href="{{object.get_day_archive_url}}">{{ object.pub_date|date:"F d, Y" }}</a></h3>
+{% endifchanged %}
+<!-- links for today -->
+<container>
+<p class="text-uppercase">{{ object.author }}</p>
+<blockquote>{{ object.message|safe }}</blockquote>
+<p class="text-right"><a href="{{ object.url}}">Link &nbsp;{% bootstrap_icon "share" %}</a></p>
+</container>
+{% endfor %}
+
+</section>
+{% endblock maincontent %}
+
+      {% block pager %}
+      <!-- file: post_archive.html -->
+        <nav>
+          <ul class="pager">
+          {% if page_obj.has_previous %}
+            <li>
+                <a href="?page={{ page_obj.previous_page_number }}">
+                {% bootstrap_icon "circle-arrow-left" %} Previous
+               </a>
+            </li>
+          {% endif %}
+          {% if page_obj.has_next %}
+            <li>
+                <a href="?page={{ page_obj.next_page_number }}">
+                    Next {% bootstrap_icon "circle-arrow-right" %}
+                </a>
+            </li>
+          {% endif %}
+          </ul>
+        </nav>
+      {% endblock %}

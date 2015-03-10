@@ -36,6 +36,23 @@ class Link(models.Model):
             'day': self.pub_date.day,
         }
         return reverse("link-detail", kwargs=kwargs)
+    
+    def get_day_archive_url(self):
+        kwargs = {
+            "year": self.pub_date.year,
+            'month': self.pub_date.strftime("%b").lower(),
+            'day': self.pub_date.day,
+
+        }
+        return reverse("link-archive-day", kwargs=kwargs)
+
+    def get_month_archive_url(self):
+        kwargs = {
+            "year": self.pub_date.year,
+            'month': self.pub_date.strftime("%b").lower(),
+
+        }
+        return reverse("link-archive-month", kwargs=kwargs)
         
     
 

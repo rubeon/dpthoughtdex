@@ -22,10 +22,10 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(link_detail_pattern, DateDetailView.as_view(model=Link, date_field="pub_date",), name='link-detail'),
-    url(month_archive_pattern, DayArchiveView.as_view(model=Link,paginate_by=PAGE_LENGTH, date_field="pub_date"),name='link-list-month', ),
-    url(day_archive_pattern, DayArchiveView.as_view(model=Link,paginate_by=PAGE_LENGTH, date_field="pub_date"),name='link-list-day', ),
+    url(month_archive_pattern, MonthArchiveView.as_view(model=Link,paginate_by=PAGE_LENGTH, date_field="pub_date"),name='link-archive-month', ),
+    url(day_archive_pattern, DayArchiveView.as_view(model=Link,paginate_by=PAGE_LENGTH, date_field="pub_date"),name='link-archive-day', ),
 
-    url(r'^$', ArchiveIndexView.as_view(model=Link,paginate_by=PAGE_LENGTH, date_field="pub_date"),name='link-list', ),
+    url(r'^$', ArchiveIndexView.as_view(model=Link,paginate_by=PAGE_LENGTH, date_field="pub_date"),name='link-archive', ),
     url(r'^upload/', 'dpthoughtdex.views.import_logfile', name="upload"),
     url(r'^feed/$', LatestEntriesFeed()),
 
