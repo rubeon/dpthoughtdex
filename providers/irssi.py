@@ -126,7 +126,9 @@ class IrssiLog(object):
                         if get_link(d):
                             logger.info("got link %s that already exists" % str(d))
                             next
+                        
                         l = Link(**d)
+                        logger.info("Created %s" % str(l))
                         l.save()
                     # chef if the author already exists
                     
