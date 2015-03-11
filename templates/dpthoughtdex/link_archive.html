@@ -13,7 +13,7 @@
 <container>
 <p class="text-uppercase">{{ object.author }}</p>
 <blockquote>{{ object.message|safe }}</blockquote>
-<p class="text-right"><a href="{{ object.url}}">Link &nbsp;{% bootstrap_icon "share" %}</a></p>
+<p class="text-right"><a href="{{ object.url}}" rel="nofollow">Link &nbsp;{% bootstrap_icon "share" %}</a></p>
 </container>
 {% endfor %}
 
